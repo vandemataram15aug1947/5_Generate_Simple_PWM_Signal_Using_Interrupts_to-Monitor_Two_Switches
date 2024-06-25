@@ -1,7 +1,3 @@
-/*Maaz khan
-  Reg No : 19jzele0320
- */
-
 
 //*****************************************************************************************
 // Simple PWM For Both Switches
@@ -9,7 +5,7 @@
 // Header file
 #include "F28x_Project.h"
 
-////////  MAAZ KHAN  /////////
+////////  Vande  /////////
 
 volatile float frequency_inc = 1.0; // starting frequency is 1 Hz
 volatile float frequency_dec = 10.0; // starting frequency is 10 Hz
@@ -22,7 +18,7 @@ __interrupt void cpu_timer0_isr(void);
 void main(void)
 {
 
-    ////////  MAAZ KHAN  /////////
+    ////////  Vande  /////////
 
     // This line of statement will initialize all the CPU  clocks of micro controller
     InitSysCtrl();
@@ -43,7 +39,7 @@ void main(void)
       12 Core Interrupt and 16 sub-interrupt of each Core Interrupt*/
     InitPieVectTable();
 
-    ////////  MAAZ KHAN  /////////
+    ////////  Vande  /////////
 
     // This is needed to write to EALLOW protected registers
     EALLOW;
@@ -66,7 +62,7 @@ void main(void)
     //Configure Timer control register with its address
     CpuTimer0Regs.TCR.all = 0x4001;
 
-    ////////  MAAZ KHAN  /////////
+    ////////  Vande  /////////
 
     EALLOW;
     //Configure GPIO7,GPIO18
@@ -106,7 +102,7 @@ void main(void)
     // Enable CPU INT1 which is connected to CPU-Timer 0
     IER |= M_INT1; // M- means to Enable
 
-    ////////  MAAZ KHAN  /////////
+    ////////  Vande  /////////
 
     // Enable TINT0 ,XINT1,XINT2   in the PIE: Group 1 __interrupt 4,5,7
     // Enable the PIE block
@@ -125,7 +121,7 @@ void main(void)
     // Enable Global realtime __interrupt DBGM
     ERTM;
 
-    ////////  MAAZ KHAN  /////////
+    ////////  Vande  /////////
 
     //enable xINT1,xINT2
     XintRegs.XINT1CR.bit.ENABLE = 1;            // Enable XINT1
@@ -134,7 +130,7 @@ void main(void)
     GPIO_SetupXINT1Gpio(67);
     GPIO_SetupXINT2Gpio(22);
 
-    ////////  MAAZ KHAN  /////////
+    ////////  Vande  /////////
 
     // Check switch state for falling edge
     XintRegs.XINT1CR.bit.POLARITY = 1;          // Rising edge interrupt
@@ -151,7 +147,7 @@ void main(void)
     }
 }
 
-////////  MAAZ KHAN  /////////
+////////  Vande  /////////
 
 // ISR for Gpio(67)
 __interrupt void xINT1_isr(void)
@@ -169,7 +165,7 @@ __interrupt void xINT1_isr(void)
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;
 }
 
-////////  MAAZ KHAN  /////////
+////////  Vande  /////////
 
 // ISR for Gpio(22)
 __interrupt void xINT2_isr(void)
@@ -187,7 +183,7 @@ __interrupt void xINT2_isr(void)
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;
 }
 
-////////  MAAZ KHAN  /////////
+////////  Vande  /////////
 
 __interrupt void cpu_timer0_isr(void)
 {
